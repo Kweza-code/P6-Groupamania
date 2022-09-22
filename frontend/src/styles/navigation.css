@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Poppins&display=swap');
+/*font-family: 'Crimson Text', serif;*/
+
+body{
+  margin: 10px 80px;
+  font-family: 'Poppins', sans-serif;;
+  background-color: #fbe3e8; 
+}
+.navigation nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navigation nav h2 {
+  font-family: 'Crimson Text', serif;
+  font-size: 30px;
+
+}
+
+.navigation ul {
+   display: flex;
+}
+
+.navigation nav h2 {
+  font-family: 'Crimson Text', serif;
+  font-size: 30px;
+}
+
+
+nav a {
+    text-decoration: none;
+    color: #545454;
+    margin-right: 50px;
+    list-style-type: none;
+}
+
+.posts {
+  margin-top: 30px;
+}
+.post {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 70px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  border-radius: 30px;
+}
+
+.post-righ__button button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 30px;
+
+}
+
+.post-right__author {
+  font-size: 20px;
+  color: #eb7371;
+}
+
+.post-left img {
+  height: 300px;
+  width: 500px;
+  border-radius: 30px;
+}
+
+.post-right {
+  max-width: 50%;
+  margin-left: 40px;
+}
+.post-right .post-right__date {
+  color: #7f7e7f;
+}
+
+.post-right .post-right__description {
+  color: #2d2d2d;
+}
+.Copiright {
+  text-align: center;
+}
+
+
+
+.post {
+background-color: #f0f8ff;
+box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+border-radius: 30px;
+}
+.post-right__author {
+font-size: 20px;
+color: #eb7371;
+}
+
+.post-righ__button button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 30px;
+
+}
