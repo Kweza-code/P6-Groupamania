@@ -6,7 +6,6 @@ form {
     border-radius: 10px;
     min-width: 300px;
   }
-
   form h1{
     color: black;
     text-align:center;
@@ -30,6 +29,8 @@ form {
     display: flex;
     flex-direction: column;
   }
+
+  
 
 
   /* CSS Sign in */
@@ -67,3 +68,8 @@ form {
     flex-direction: column;
   }
  
+
+  @media screen and (max-width: 767px) {
+
+    
+    }

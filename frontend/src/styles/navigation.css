@@ -11,6 +11,7 @@ body{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: baseline;
 }
 
 .navigation nav h2 {
@@ -36,17 +37,28 @@ nav a {
     list-style-type: none;
 }
 
+nav a:hover {
+  color: black;
+	border-top: 4px solid black;
+	padding-top: 32px;
+	transition: ease 0.1s;
+}
+
 .posts {
   margin-top: 30px;
 }
 .post {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 70px;
   padding: 20px;
   background-color: #f0f8ff;
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
   border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 100px;
+
+ 
 }
 
 .post-righ__button button {
@@ -66,16 +78,26 @@ nav a {
   color: #eb7371;
 }
 
-.post-left img {
-  height: 300px;
-  width: 500px;
-  border-radius: 30px;
+.post-left {
+  width: 30%;
+
 }
 
-.post-right {
-  max-width: 50%;
-  margin-left: 40px;
-}
+ .post-left img {
+  height: 300px;
+  width: 100%;
+  border-radius: 30px;
+  object-fit: cover;
+ }
+
+ .post-right {
+  width: 50%;
+  margin-left: 30px;
+  display: flex;
+ flex-direction: column;
+ }
+
+
 .post-right .post-right__date {
   color: #7f7e7f;
 }
@@ -87,13 +109,15 @@ nav a {
   text-align: center;
 }
 
-
-
-.post {
-background-color: #f0f8ff;
-box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-border-radius: 30px;
+.posts {
+  display: flex;
+    flex-direction: column;
+    padding: 16px;
 }
+
+
+
+
 .post-right__author {
 font-size: 20px;
 color: #eb7371;
@@ -110,3 +134,43 @@ color: #eb7371;
   margin-right: 30px;
 
 }
+
+@media screen and (max-width: 767px) {
+  .navigation nav h2 {
+    display: none;
+  
+  }
+
+  .navigation nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #545454;
+    
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.post-left img {
+  height: auto;
+}
+
+.post-right {
+  max-width: 100%;
+  margin-left: 0px;
+}
+
+.post-right h2 {
+  text-align: center;
+  
+}
+    
+}
+
+
+

@@ -14,7 +14,7 @@ const Home = () => {
             />
           </div>
           <div class="post-right">
-            <p class="post-right__date">16/09/2022</p>
+            <p class="post-right__date">16/09/2022 à 17h30</p>
             <h2>This is my title</h2>
             <p class="post-right__description">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
