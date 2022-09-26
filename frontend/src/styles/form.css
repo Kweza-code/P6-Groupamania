@@ -68,8 +68,13 @@ form {
     flex-direction: column;
   }
  
+/* CSS Create Form */ 
 
-  @media screen and (max-width: 767px) {
-
-    
-    }
+form .inputs input[type="text"]{
+  padding: 15px;
+  border:none;
+  border-radius: 5px;
+  background-color:#f0f8ff;
+  outline:none;
+  margin-bottom: 15px;
+}

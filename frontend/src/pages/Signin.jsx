@@ -19,6 +19,9 @@ const Signin = () => {
           <button type="submit">Sign in</button>
         </div>
       </form>
+      <footer>
+        <h3 class="Copiright">&copy; Groupamania 2022</h3>
+      </footer>
     </div>
   );
 };

@@ -182,6 +182,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <footer>
+        <h3 class="Copiright">&copy; Groupamania 2022</h3>
+      </footer>
     </div>
   );
 };

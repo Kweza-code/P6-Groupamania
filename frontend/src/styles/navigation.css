@@ -2,11 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Poppins&display=swap');
 /*font-family: 'Crimson Text', serif;*/
 
-body{
-  margin: 10px 80px;
-  font-family: 'Poppins', sans-serif;;
-  background-color: #fbe3e8; 
-}
+
 .navigation nav {
   display: flex;
   justify-content: space-between;
