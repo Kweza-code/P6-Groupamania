@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { NavLink } from "react-router-dom";
 
 const Signup = () => {
   return (
@@ -7,13 +8,14 @@ const Signup = () => {
       <form>
         <h1>Sign up</h1>
         <div class="inscription__inputs">
-          <input type="pseudo" placeholder="username" />
+          <label>Email</label>
           <input type="email" placeholder="Email" />
+          <label>Password</label>
           <input type="password" placeholder="password" />
         </div>
 
         <p class="inscription__txt">
-          I already have an account. <a href="Signin.html">sign in</a>
+          I already have an account. <NavLink to="/signin">I connect</NavLink>
         </p>
         <div align="center">
           <button type="submit">Sign up</button>
