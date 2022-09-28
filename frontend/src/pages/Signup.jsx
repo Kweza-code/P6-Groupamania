@@ -1,9 +1,8 @@
 import React from "react";
-import Navigation from "../components/Navigation";
+
 const Signup = () => {
   return (
     <div>
-      <Navigation />
       <form>
         <h1>Sign up</h1>
         <div class="inscription__inputs">

@@ -1,10 +1,8 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 
 const Create = () => {
   return (
     <div>
-      <Navigation />
       <form>
         <h1>Création d'une publication</h1>
         <div className="inputs">

@@ -1,10 +1,8 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 
 const Home = () => {
   return (
     <div>
-      <Navigation />
       <section class="posts">
         <div class="post">
           <div class="post-left">

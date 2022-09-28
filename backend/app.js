@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
-const saucesRoutes = require("./routes/posts");
-const userRoutes = require("./routes/users");
+const postsRoutes = require("./routes/posts");
+const usersRoutes = require("./routes/users");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -45,3 +45,8 @@ app.use((req, res, next) => {
 });
 
 //Racine de la routes d'authentification
+app.use("/api/posts", postsRoutes);
+app.use("/api/auth", usersRoutes);
+app.use("/images", express.static(path.join(__dirname, "images")));
+module.exports = app;
+

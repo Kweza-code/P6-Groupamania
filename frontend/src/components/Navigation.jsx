@@ -14,10 +14,13 @@ const Navigation = () => {
             <li>Create</li>
           </NavLink>
           <NavLink to="/signin">
-            <li>Sign in</li>
+            <li>Signin</li>
           </NavLink>
           <NavLink to="/signup">
-            <li>Sign up</li>
+            <li>Signup</li>
+          </NavLink>
+          <NavLink to="/signup">
+            <li>Logout</li>
           </NavLink>
         </ul>
       </nav>
