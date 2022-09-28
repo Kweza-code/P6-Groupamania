@@ -8,3 +8,7 @@ body{
     background-color: #fbe3e8; 
     scroll-behavior: smooth;
   }
+
+  footer {
+    text-align: center;
+  }

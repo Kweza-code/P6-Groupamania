@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Header from "./Header";
 
 const Navigation = () => {
   return (
     <div className="navigation">
       <nav>
-        <h2>Groupomania</h2>
+        <Header />
         <ul>
           <NavLink to="/">
             <li>Home</li>
