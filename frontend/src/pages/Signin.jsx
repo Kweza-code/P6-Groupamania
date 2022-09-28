@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/Footer";
 
 const Signin = () => {
   return (
@@ -17,9 +18,7 @@ const Signin = () => {
           <button type="submit">Sign in</button>
         </div>
       </form>
-      <footer>
-        <h3 class="Copiright">&copy; Groupamania 2022</h3>
-      </footer>
+      <Footer />
     </div>
   );
 };
