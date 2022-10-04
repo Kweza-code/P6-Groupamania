@@ -2,12 +2,9 @@ import React from "react";
 
 const Post = (props) => {
   return (
-    <div class="post">
+    <div class="post" data-id={props.id}>
       <div class="post-left">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/01/09/11/11/office-594132_960_720.jpg"
-          alt="caca"
-        />
+        <img src={props.imageUrl} alt={props.title} />
       </div>
       <div class="post-right">
         <p class="post-right__date">{props.date}</p>

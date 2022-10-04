@@ -1,7 +1,11 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { NavLink } from "react-router-dom";
 
 const Create = () => {
+  const handlePost = () => {};
+
+  const cancelPost = () => {};
   return (
     <div>
       <form>
@@ -15,7 +19,12 @@ const Create = () => {
           <input type="file" accept="image/png, image/jpeg"></input>
         </div>
         <div align="center">
-          <button type="submit">Publier</button>
+          <button className="cancel" onClick={cancelPost}>
+            <NavLink to="/home">Annuler et Retourner au Home</NavLink>
+          </button>
+          <button type="submit" onClick={handlePost}>
+            Publier
+          </button>
         </div>
       </form>
       <Footer />
