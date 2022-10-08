@@ -2,15 +2,48 @@ import React from "react";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
+  let navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const enteredTitle = titleInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
+    console.log(enteredDescription);
+    console.log(enteredTitle);
+
+    //Preparing the data we want to send to the backend API
+    let formData = new FormData();
+    formData.append(
+      "post",
+      JSON.stringify({
+        title: titleInputRef.current.value,
+        description: descriptionInputRef.current.value,
+      })
+    );
+    //Sending data to backend API
+    fetch(`http://localhost:3000/api/posts/`, {
+      method: "POST",
+      data: formData,
+    })
+      .then(function (res) {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then(function (post) {
+        // Checking response
+        console.log(post);
+        navigate("/home");
+      })
+      .catch(function (err) {
+        alert(err);
+      });
   };
-  console.log(titleInputRef);
 
   return (
     <div>
@@ -28,7 +61,14 @@ const Create = () => {
           <button className="cancel">
             <NavLink to="/home">Annuler et Retourner au Home</NavLink>
           </button>
-          <button type="submit">Publier</button>
+          <button
+            onClick={() => {
+              navigate("/home");
+            }}
+            type="submit"
+          >
+            Publier
+          </button>
         </div>
       </form>
       <Footer />

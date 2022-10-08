@@ -7,14 +7,14 @@ const Signup = () => {
     <div>
       <form>
         <h1>Sign up</h1>
-        <div class="inscription__inputs">
+        <div className="inscription__inputs">
           <label>Email</label>
           <input type="email" placeholder="Email" />
           <label>Password</label>
           <input type="password" placeholder="password" />
         </div>
 
-        <p class="inscription__txt">
+        <p className="inscription__txt">
           I already have an account. <NavLink to="/signin">I connect</NavLink>
         </p>
         <div align="center">

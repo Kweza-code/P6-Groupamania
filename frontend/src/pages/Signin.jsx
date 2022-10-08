@@ -7,14 +7,14 @@ const Signin = () => {
     <div>
       <form>
         <h1>Sign in</h1>
-        <div class="inputs">
+        <div className="inputs">
           <label>Email</label>
           <input type="email" placeholder="Email" />
           <label>Password</label>
           <input type="password" placeholder="Password" />
         </div>
 
-        <p class="connexion__txt">
+        <p className="connexion__txt">
           I don't own an account, i am{" "}
           <NavLink to="/signup">creating one</NavLink>
         </p>
