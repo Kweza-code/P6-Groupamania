@@ -11,24 +11,20 @@ const Create = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
     const enteredTitle = titleInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
-    console.log(enteredDescription);
-    console.log(enteredTitle);
 
     //Preparing the data we want to send to the backend API
     let formData = new FormData();
-    formData.append(
-      "post",
-      JSON.stringify({
-        title: titleInputRef.current.value,
-        description: descriptionInputRef.current.value,
-      })
-    );
+    formData.append("title", enteredTitle);
+    formData.append("description", enteredDescription);
+
     //Sending data to backend API
-    fetch(`http://localhost:3000/api/posts/`, {
+    fetch("http://localhost:3000/api/posts", {
       method: "POST",
       data: formData,
+      config: { headers: { "Content-Type": "multipart/form-data" } },
     })
       .then(function (res) {
         if (res.ok) {
@@ -61,14 +57,7 @@ const Create = () => {
           <button className="cancel">
             <NavLink to="/home">Annuler et Retourner au Home</NavLink>
           </button>
-          <button
-            onClick={() => {
-              navigate("/home");
-            }}
-            type="submit"
-          >
-            Publier
-          </button>
+          <button type="submit">Publier</button>
         </div>
       </form>
       <Footer />

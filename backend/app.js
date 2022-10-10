@@ -49,4 +49,3 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/auth", usersRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 module.exports = app;
-
