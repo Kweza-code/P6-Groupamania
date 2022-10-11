@@ -41,6 +41,8 @@ const Create = () => {
       });
   };
 
+  
+
   return (
     <div>
       <form onSubmit={submitHandler}>
@@ -57,7 +59,7 @@ const Create = () => {
           <button className="cancel">
             <NavLink to="/home">Annuler et Retourner au Home</NavLink>
           </button>
-          <button type="submit">Publier</button>
+          <button ontype="submit">Publier</button>
         </div>
       </form>
       <Footer />
