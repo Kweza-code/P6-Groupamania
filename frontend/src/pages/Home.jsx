@@ -1,39 +1,41 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Post from "../components/Post";
+import { useState } from "react";
+import { Form } from "react-router-dom";
 
 const Home = () => {
-  return (
-    <div>
-      <section class="posts">
-        <Post
-          date="16/02/2022 à 16h23"
-          description="Salut, hier je suis parti manger un burger"
-          author="@Adrien"
-          title="Le burger"
-          dislike="32"
-          like="4"
-        />
-        <Post
-          date="16/02/2022 à 16h25"
-          description="Salut, hier je suis parti manger à la cantine"
-          author="@Julien"
-          title="La cantine"
-          dislike="34"
-          like="42"
-        />
-        <Post
-          date="16/02/2022 à 18h"
-          description="Salut, je suis parti aux toilettes"
-          author="@Tom"
-          title="Les toilettes"
-          dislike="35"
-          like="41"
-        />
-      </section>
-      <Footer />
-    </div>
-  );
+  const [post, setPost] = useState([]);
+
+  fetch("http://localhost:3000/api/posts", {
+    method: "GET",
+  })
+    .then((res) => {
+      setPost(res.data[0]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  //
+  {
+    Form.map((post) => {
+      return (
+        <div>
+          <section class="posts">
+            <Post
+              date={props.date}
+              description={props.description}
+              author={props.author}
+              title={props.title}
+              dislike={props.dislike}
+              like={props.like}
+            />
+          </section>
+          <Footer />
+        </div>
+      );
+    });
+  }
 };
 
 export default Home;
