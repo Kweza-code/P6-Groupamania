@@ -5,7 +5,7 @@ const postSchema = mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   imageUrl: { type: String, required: true },
-  publishedAt: { type: String, required: true },
+  //publishedAt: { type: String, required: true },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
   usersLiked: [{ type: String }],

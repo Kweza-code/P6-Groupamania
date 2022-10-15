@@ -12,19 +12,25 @@ const Create = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredTitle = titleInputRef.current.value;
-    const enteredDescription = descriptionInputRef.current.value;
+    const title = titleInputRef.current.value;
+    const content = descriptionInputRef.current.value;
 
     //Preparing the data we want to send to the backend API
     let formData = new FormData();
-    formData.append("title", enteredTitle);
-    formData.append("description", enteredDescription);
+    formData.append(
+      "post",
+      JSON.stringify({
+        title: title,
+        content: content,
+      })
+    );
+    formData.append("image", document.getElementById("image").files[0]);
 
     //Sending data to backend API
     fetch("http://localhost:3000/api/posts", {
-      method: "POST",
-      data: formData,
-      config: { headers: { "Content-Type": "multipart/form-data" } },
+      method: "GET",
+      //headers: { "Content-Type": "multipart/form-data" }
+      body: formData,
     })
       .then(function (res) {
         if (res.ok) {
@@ -34,14 +40,12 @@ const Create = () => {
       .then(function (post) {
         // Checking response
         console.log(post);
-        navigate("/home");
+        //navigate("/home");
       })
       .catch(function (err) {
         alert(err);
       });
   };
-
-  
 
   return (
     <div>
@@ -53,7 +57,12 @@ const Create = () => {
           <label>Description de la publication</label>
           <input type="text" ref={descriptionInputRef} name="description" />
           <label>Image de la publication</label>
-          <input type="file" accept="image/png, image/jpeg"></input>
+          <input
+            id="image"
+            name="image"
+            type="file"
+            accept="image/png, image/jpeg"
+          ></input>
         </div>
         <div align="center">
           <button className="cancel">

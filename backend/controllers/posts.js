@@ -9,8 +9,11 @@ exports.createPost = (req, res, next) => {
       req.file.filename
     }`,
   });
+  post.userId = "@Thomas";
   post.likes = 0;
   post.dislikes = 0;
+  post.usersLiked = [];
+  post.usersDisliked = [];
   post
     .save()
     .then(() => res.status(201).json({ message: "Post postée !" }))
