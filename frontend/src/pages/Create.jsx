@@ -29,7 +29,6 @@ const Create = () => {
     //Sending data to backend API
     fetch("http://localhost:3000/api/posts", {
       method: "GET",
-      //headers: { "Content-Type": "multipart/form-data" }
       body: formData,
     })
       .then(function (res) {

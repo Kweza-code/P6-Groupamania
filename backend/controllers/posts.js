@@ -18,6 +18,7 @@ exports.createPost = (req, res, next) => {
     .save()
     .then(() => res.status(201).json({ message: "Post postée !" }))
     .catch((error) => res.status(400).json({ error: error }));
+  console.log(post.userId);
 };
 //----------------------------------------------------------
 exports.getOnePost = (req, res, next) => {
