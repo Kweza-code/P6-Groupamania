@@ -28,7 +28,7 @@ const Create = () => {
 
     //Sending data to backend API
     fetch("http://localhost:3000/api/posts", {
-      method: "GET",
+      method: "POST",
       body: formData,
     })
       .then(function (res) {
@@ -39,7 +39,7 @@ const Create = () => {
       .then(function (post) {
         // Checking response
         console.log(post);
-        //navigate("/home");
+        navigate("/home");
       })
       .catch(function (err) {
         alert(err);

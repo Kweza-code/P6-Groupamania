@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 import Navigation from "../src/components/Navigation";
 import Create from "./pages/Create";
 import Home from "./pages/Home";
