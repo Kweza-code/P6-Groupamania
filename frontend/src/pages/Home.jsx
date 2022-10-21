@@ -30,7 +30,7 @@ const Home = () => {
         {posts.map((post, index) => (
           <Post
             date={post.date}
-            description={post.description}
+            description={post.content}
             author={post.author}
             imageUrl={post.imageUrl}
             title={post.title}
