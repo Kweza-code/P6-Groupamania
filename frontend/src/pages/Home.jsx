@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-router-dom";
+
 import Footer from "../components/Footer";
 import Post from "../components/Post";
 
@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <div>
-      <section class="posts">
+      <section className="posts">
         {posts.map((post, index) => (
           <Post
             date={post.date}

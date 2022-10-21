@@ -35,9 +35,8 @@ nav a {
 
 nav a:hover {
   color: black;
-	border-top: 4px solid black;
-	padding-top: 32px;
-	transition: ease 0.1s;
+
+	
 }
 
 .posts {

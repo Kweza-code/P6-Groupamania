@@ -1,0 +1,4 @@
+!backend/images/.gitkeep
+backend/images/*
+backend/images/*
+frontend/node_modules/*

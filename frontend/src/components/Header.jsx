@@ -1,7 +1,7 @@
 import React from "react";
 
 const Header = () => {
-  return <img src="{./images/logo.png}" alt="Logo" />;
+  return <img src="/frontend/public/images/icon-left-font.png" alt="" />;
 };
 
 export default Header;
