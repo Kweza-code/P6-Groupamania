@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const update = () => {
+const Update = (props) => {
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/posts/6354635f50e5d076fdb93e16`, {
+      method: "GET",
+    })
+      .then(function (res) {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <form>
         <h1>Modification de votre Publication</h1>
         <div className="inputs">
           <label>Titre de la publication</label>
-          <input type="text" name="title" />
+          <textarea name="Title" id={props.title} cols="30" rows="10">
+            {props.title}
+          </textarea>
+          <input type="text" name="title" placeholder={props.title} />
           <label>Description de la publication</label>
           <input type="text" name="description" />
           <label>Image de la publication</label>
@@ -29,4 +49,4 @@ const update = () => {
   );
 };
 
-export default update;
+export default Update;
