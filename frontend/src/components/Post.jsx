@@ -3,6 +3,23 @@ import React from "react";
 
 const Post = (props) => {
   const navigate = useNavigate();
+  // Deleting PostD
+  function deletePost() {
+    fetch(`http://localhost:3000/api/posts/${props.id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <div className="post" id="post-345" data-id={props.id}>
       <div className="post-left">
@@ -26,14 +43,16 @@ const Post = (props) => {
             <button
               className="favorite styled"
               type="button"
-              onClick={() => navigate("update")}
+              onClick={() => navigate("update/")}
             >
               Update
             </button>
             <button
               className="favorite styled"
               type="button"
-              id="postDeleteButton"
+              onClick={() => {
+                deletePost();
+              }}
             >
               Delete
             </button>

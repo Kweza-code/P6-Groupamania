@@ -29,6 +29,7 @@ const Home = () => {
       <section className="posts">
         {posts.map((post, index) => (
           <Post
+            data-id={post.id}
             date={post.date}
             description={post.content}
             author={post.author}
