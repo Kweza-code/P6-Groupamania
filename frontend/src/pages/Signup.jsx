@@ -46,7 +46,7 @@ const Signup = () => {
           <label>Email</label>
           <input type="email" placeholder="Email" ref={emailInput} />
           <label>Password</label>
-          <input type="password" placeholder="password" ref={passwordInp} />
+          <input type="password" placeholder="password" ref={passwordInput} />
         </div>
 
         <p className="inscription__txt">
