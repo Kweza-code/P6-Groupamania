@@ -27,8 +27,11 @@ const Update = (props) => {
           <textarea name="Title" id={props.title} cols="30" rows="10">
             {props.title}
           </textarea>
-          <input type="text" name="title" placeholder={props.title} />
+          <input type="text" name="title" />
           <label>Description de la publication</label>
+          <textarea name="Title" id={props.title} cols="30" rows="10">
+            {props.content}
+          </textarea>
           <input type="text" name="description" />
           <label>Image de la publication</label>
           <input
