@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Footer from "../components/Footer";
 import Post from "../components/Post";
 
 const Home = () => {
@@ -40,7 +39,6 @@ const Home = () => {
           />
         ))}
       </section>
-      <Footer />
     </div>
   );
 };

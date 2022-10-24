@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Post from "../components/Post";
 
 const Update = (props) => {
   useEffect(() => {
-    fetch(`http://localhost:3000/api/posts/6354635f50e5d076fdb93e16`, {
+    fetch(`http://localhost:3000/api/posts/6356600dffd993a1c316241e`, {
       method: "GET",
     })
       .then(function (res) {

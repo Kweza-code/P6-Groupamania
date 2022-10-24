@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/Footer";
+
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -68,7 +68,6 @@ const Signin = () => {
           <input type="submit" value="Se connecter" />
         </div>
       </form>
-      <Footer />
     </div>
   );
 };

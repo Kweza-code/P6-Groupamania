@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import { useRef } from "react";
 
@@ -56,7 +55,6 @@ const Signup = () => {
           <button type="submit">Sign up</button>
         </div>
       </form>
-      <Footer />
     </div>
   );
 };

@@ -5,7 +5,7 @@ const Post = (props) => {
   const navigate = useNavigate();
   // Deleting PostD
   function deletePost() {
-    fetch(`http://localhost:3000/api/posts/6354635f50e5d076fdb93e16`, {
+    fetch(`http://localhost:3000/api/posts/6356600dffd993a1c316241e`, {
       method: "DELETE",
     })
       .then((res) => {
