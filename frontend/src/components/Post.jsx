@@ -50,9 +50,7 @@ const Post = (props) => {
             <button
               className="favorite styled"
               type="button"
-              onClick={() => {
-                deletePost();
-              }}
+              onClick={deletePost}
             >
               Delete
             </button>

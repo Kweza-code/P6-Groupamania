@@ -39,7 +39,7 @@ const Signup = () => {
   };
   return (
     <div>
-      <form>
+      <form onSubmit={sendData}>
         <h1>Sign up</h1>
         <div className="inscription__inputs">
           <label>Email</label>
