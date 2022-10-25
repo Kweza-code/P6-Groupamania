@@ -25,11 +25,11 @@ const Update = (props) => {
       <form>
         <h1>Modification de votre Publication</h1>
         <div className="inputs">
-          <label>Titre de la publication</label>
+          <label htmlFor="Title">Titre de la publication</label>
           <input type="text" name="title" value={props.title} />
-          <label>Description de la publication</label>
+          <label htmlFor="Content">Description de la publication</label>
           <input type="text" name="description" value={props.content} />
-          <label>Image de la publication</label>
+          <label htmlFor="Image">Image de la publication</label>
           <input
             id="image"
             name="image"
@@ -38,9 +38,6 @@ const Update = (props) => {
           ></input>
         </div>
         <div align="center">
-          <button className="cancel">
-            Annuler la modification et Retourner au Home
-          </button>
           <button type="submit">Publier</button>
         </div>
       </form>

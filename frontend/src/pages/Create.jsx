@@ -51,11 +51,11 @@ const Create = () => {
       <form onSubmit={submitHandler}>
         <h1>Création d'une publication</h1>
         <div className="inputs">
-          <label>Titre de la publication</label>
+          <label htmlFor="Title">Titre de la publication</label>
           <input type="text" ref={titleInputRef} name="title" />
-          <label>Description de la publication</label>
+          <label htmlFor="Content">Description de la publication</label>
           <input type="text" ref={descriptionInputRef} name="description" />
-          <label>Image de la publication</label>
+          <label htmlFor="Image">Image de la publication</label>
           <input
             id="image"
             name="image"

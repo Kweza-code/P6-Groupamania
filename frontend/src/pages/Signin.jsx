@@ -44,9 +44,9 @@ const Signin = () => {
       <form onSubmit={sendData} id="sign-up-form">
         <h1>Sign in</h1>
         <div className="inscription__inputs">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <input type="email" placeholder="Email" ref={emailInput} />
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input type="password" placeholder="password" ref={passwordInput} />
         </div>
         <div className="password.error"></div>

@@ -42,9 +42,9 @@ const Signup = () => {
       <form onSubmit={sendData}>
         <h1>Sign up</h1>
         <div className="inscription__inputs">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <input type="email" placeholder="Email" ref={emailInput} />
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input type="password" placeholder="password" ref={passwordInput} />
         </div>
 
