@@ -1,63 +1,53 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailInput = useRef();
+  const passwordInput = useRef();
+  let navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const emailError = document.querySelector(".email.error");
-    const passwordError = document.querySelector(".password.error");
+  const sendData = (event) => {
+    event.preventDefault();
+    const email = emailInput.current.value;
+    const password = passwordInput.current.value;
 
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/auth/login`,
-      withCredentials: true,
-      data: {
-        email,
-        password,
+    // -- Envoyer le formulaire au backend via un fetch POST
+    fetch("http://localhost:3000/api/auth/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
     })
-      .then((res) => {
-        if (res.data.errors) {
-          emailError.innerHTML = res.data.errors.email;
-          passwordError.innerHTML = res.data.errors.password;
-        } else {
-          window.location = "/";
+      .then(function (res) {
+        if (res.ok) {
+          return res.json();
         }
       })
-      .catch((err) => {
+      .then(function (res) {
+        console.log(res);
+        console.log("Vous êtes connecter");
+        navigate("/home");
+      })
+      .catch(function (err) {
         console.log(err);
       });
   };
   return (
     <div>
-      <form action="" onSubmit={handleLogin} id="sign-up-form">
+      <form onSubmit={sendData} id="sign-up-form">
         <h1>Sign in</h1>
-        <div className="inputs">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Email"
-          />
-          <div className="email.error"></div>
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
+        <div className="inscription__inputs">
+          <label>Email</label>
+          <input type="email" placeholder="Email" ref={emailInput} />
+          <label>Password</label>
+          <input type="password" placeholder="password" ref={passwordInput} />
         </div>
         <div className="password.error"></div>
         <p className="connexion__txt">
@@ -65,7 +55,7 @@ const Signin = () => {
           <NavLink to="/signup">creating one</NavLink>
         </p>
         <div align="center">
-          <input type="submit" value="Se connecter" />
+          <button type="submit">Sign up</button>
         </div>
       </form>
     </div>

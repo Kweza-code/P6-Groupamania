@@ -5,7 +5,7 @@ const Post = (props) => {
   const navigate = useNavigate();
   // Deleting PostD
   function deletePost() {
-    fetch(`http://localhost:3000/api/posts/6356600dffd993a1c316241e`, {
+    fetch(`http://localhost:3000/api/posts/${props.id}`, {
       method: "DELETE",
     })
       .then((res) => {
@@ -15,13 +15,14 @@ const Post = (props) => {
       })
       .then((res) => {
         console.log(res);
+        document.getElementById(`post-${props.id}`).remove();
       })
       .catch((err) => {
         console.log(err);
       });
   }
   return (
-    <div className="post" id="post-345" data-id={props.id}>
+    <div className="post" id={"post-" + props.id}>
       <div className="post-left">
         <img src={props.imageUrl} alt={props.title} />
       </div>
@@ -33,17 +34,15 @@ const Post = (props) => {
         <div className="post-right__buttons">
           <div className="post-righ__button">
             <button className="favorite styled" type="button">
-              Like
-              <span>{props.like}</span> <span>(X)</span>
+              Like ({props.likes})
             </button>
             <button className="favorite styled" type="button">
-              Dislike <span>(X)</span>
-              <span>{props.dislike}</span>
+              Dislike ({props.dislikes})
             </button>
             <button
               className="favorite styled"
               type="button"
-              onClick={() => navigate("update/")}
+              onClick={() => navigate(`update/${props.id}`)}
             >
               Update
             </button>

@@ -76,9 +76,9 @@ exports.deletePost = (req, res, next) => {
       if (!post) {
         res.status(404).json({ error: error });
       }
-      if (post.userId !== req.auth.userId) {
-        res.status(400).json({ error: error });
-      }
+      //      if (post.userId !== req.auth.userId) {
+      //        res.status(400).json({ error: error });
+      //      }
       const filename = post.imageUrl.split("/images/")[1];
       fs.unlink(`images/${filename}`, () => {
         Post.deleteOne({ _id: req.params.id })

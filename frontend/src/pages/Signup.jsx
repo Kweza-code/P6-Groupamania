@@ -1,40 +1,40 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const emailInput = useRef();
   const passwordInput = useRef();
-
+  let navigate = useNavigate();
   const sendData = (event) => {
     event.preventDefault();
     const email = emailInput.current.value;
     const password = passwordInput.current.value;
 
-    let formData = new FormData();
-    formData.append(
-      "post",
-      JSON.stringify({
-        email: email,
-        password: password,
-      })
-    );
-
+    // -- Envoyer le formulaire au backend via un fetch POST
     fetch("http://localhost:3000/api/auth/signup", {
       method: "POST",
-      body: formData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
     })
       .then(function (res) {
         if (res.ok) {
           return res.json();
         }
       })
-      .then(function (post) {
-        // Checking response
-        console.log(post);
+      .then(function (res) {
+        console.log(res);
+        navigate("/home");
       })
       .catch(function (err) {
-        alert(err);
+        console.log(err);
       });
   };
   return (

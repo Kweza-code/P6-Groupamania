@@ -67,7 +67,7 @@ const Create = () => {
           <button className="cancel">
             <NavLink to="/home">Annuler et Retourner au Home</NavLink>
           </button>
-          <button ontype="submit">Publier</button>
+          <button type="submit">Publier</button>
         </div>
       </form>
     </div>

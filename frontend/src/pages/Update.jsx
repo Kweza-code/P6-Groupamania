@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Post from "../components/Post";
 
 const Update = (props) => {
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/api/posts/6356600dffd993a1c316241e`, {
+    fetch(`http://localhost:3000/api/posts/${props.id}`, {
       method: "GET",
     })
       .then(function (res) {
@@ -13,6 +13,7 @@ const Update = (props) => {
       })
       .then((res) => {
         console.log(res);
+        setPosts(res);
       })
       .catch((err) => {
         console.log(err);
@@ -25,15 +26,9 @@ const Update = (props) => {
         <h1>Modification de votre Publication</h1>
         <div className="inputs">
           <label>Titre de la publication</label>
-          <textarea name="Title" id={props.title} cols="30" rows="10">
-            {props.title}
-          </textarea>
-          <input type="text" name="title" />
+          <input type="text" name="title" value={props.title} />
           <label>Description de la publication</label>
-          <textarea name="Title" id={props.title} cols="30" rows="10">
-            {props.content}
-          </textarea>
-          <input type="text" name="description" />
+          <input type="text" name="description" value={props.content} />
           <label>Image de la publication</label>
           <input
             id="image"
@@ -46,7 +41,7 @@ const Update = (props) => {
           <button className="cancel">
             Annuler la modification et Retourner au Home
           </button>
-          <button ontype="submit">Publier</button>
+          <button type="submit">Publier</button>
         </div>
       </form>
     </div>

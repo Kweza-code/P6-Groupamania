@@ -28,14 +28,15 @@ const Home = () => {
       <section className="posts">
         {posts.map((post, index) => (
           <Post
-            data-id={post.id}
+            key={post._id}
+            id={post._id}
             date={post.date}
             description={post.content}
             author={post.author}
             imageUrl={post.imageUrl}
             title={post.title}
-            dislike={post.dislike}
-            like={post.like}
+            dislikes={post.dislikes}
+            likes={post.likes}
           />
         ))}
       </section>
