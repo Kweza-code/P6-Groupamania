@@ -27,7 +27,7 @@ const Create = () => {
     formData.append("image", document.getElementById("image").files[0]);
 
     //Sending data to backend API
-    fetch("http://localhost:3000/api/posts", {
+    fetch(`${process.env.REACT_APP_API_URL}api/posts`, {
       method: "POST",
       body: formData,
     })

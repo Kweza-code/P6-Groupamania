@@ -14,7 +14,7 @@ const Signin = () => {
     const password = passwordInput.current.value;
 
     // -- Envoyer le formulaire au backend via un fetch POST
-    fetch("http://localhost:3000/api/auth/login", {
+    fetch(`${process.env.REACT_APP_API_URL}api/auth/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
