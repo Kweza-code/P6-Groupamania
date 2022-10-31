@@ -18,7 +18,8 @@ const Signin = () => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "content-type": "application/json",
+        Authorization: "Bearer" + localStorage.setItem("token"),
       },
       body: JSON.stringify({
         email: email,
@@ -32,7 +33,7 @@ const Signin = () => {
       })
       .then(function (res) {
         console.log(res);
-        console.log("Vous êtes connecter");
+
         navigate("/home");
       })
       .catch(function (err) {
@@ -55,7 +56,7 @@ const Signin = () => {
           <NavLink to="/signup">creating one</NavLink>
         </p>
         <div align="center">
-          <button type="submit">Sign up</button>
+          <button type="submit">Sign in</button>
         </div>
       </form>
     </div>

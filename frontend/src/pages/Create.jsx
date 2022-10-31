@@ -64,9 +64,6 @@ const Create = () => {
           ></input>
         </div>
         <div align="center">
-          <button className="cancel">
-            <NavLink to="/home">Annuler et Retourner au Home</NavLink>
-          </button>
           <button type="submit">Publier</button>
         </div>
       </form>
