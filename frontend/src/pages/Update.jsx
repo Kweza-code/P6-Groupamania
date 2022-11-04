@@ -24,11 +24,11 @@ const Update = (props) => {
       <form>
         <h1>Modification de votre Publication</h1>
         <div className="inputs">
-          <label>Titre de la publication</label>
+          <label htmlFor="title">Titre de la publication</label>
           <input type="text" name="title" value={props.title} />
-          <label>Description de la publication</label>
+          <label htmlFor="Description">Description de la publication</label>
           <input type="text" name="description" value={props.content} />
-          <label>Image de la publication</label>
+          <label htmlFor="Image of content">Image de la publication</label>
           <input
             id="image"
             name="image"

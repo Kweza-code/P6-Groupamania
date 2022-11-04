@@ -14,8 +14,7 @@ const Signin = () => {
     const password = passwordInput.current.value;
 
     function sendToken() {
-      const tokens = (email, password);
-      localStorage.setItem("tokens", JSON.stringify(tokens));
+      localStorage.setItem("token", JSON.stringify(token));
     }
 
     // -- Envoyer le formulaire au backend via un fetch POST
@@ -69,3 +68,4 @@ const Signin = () => {
 };
 
 export default Signin;
+d;
