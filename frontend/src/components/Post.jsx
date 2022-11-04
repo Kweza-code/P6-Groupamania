@@ -1,7 +1,53 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import React from "react";
 
 const Post = (props) => {
+  const [likeCount, setLikeCount] = useState(50);
+  const [dislikeCount, setDislikeCount] = useState(25);
+
+  const [activeBtn, setActiveBtn] = useState("none");
+
+  const handleLikeClick = () => {
+    if (activeBtn === "none") {
+      setLikeCount(likeCount + 1);
+      setActiveBtn("like");
+      return;
+    }
+
+    if (activeBtn === "like") {
+      setLikeCount(likeCount - 1);
+      setActiveBtn("none");
+      return;
+    }
+
+    if (activeBtn === "dislike") {
+      setLikeCount(likeCount + 1);
+      setDislikeCount(dislikeCount - 1);
+      setActiveBtn("like");
+    }
+  };
+
+  const handleDisikeClick = () => {
+    if (activeBtn === "none") {
+      setDislikeCount(dislikeCount + 1);
+      setActiveBtn("dislike");
+      return;
+    }
+
+    if (activeBtn === "dislike") {
+      setDislikeCount(dislikeCount - 1);
+      setActiveBtn("none");
+      return;
+    }
+
+    if (activeBtn === "like") {
+      setDislikeCount(dislikeCount + 1);
+      setLikeCount(likeCount - 1);
+      setActiveBtn("dislike");
+    }
+  };
+
   const navigate = useNavigate();
   // Deleting PostD
   function deletePost() {
@@ -33,21 +79,31 @@ const Post = (props) => {
         <p className="post-right__author">{props.author}</p>
         <div className="post-right__buttons">
           <div className="post-righ__button">
-            <button className="favorite styled" type="button">
-              Like ({props.likes})
-            </button>
-            <button className="favorite styled" type="button">
-              Dislike ({props.dislikes})
+            <button
+              className={`btn ${activeBtn === "like" ? "like-active" : ""}`}
+              onClick={handleLikeClick}
+            >
+              <span className="material-symbols-rounded"></span>
+              Like {likeCount}
             </button>
             <button
-              className="favorite styled"
+              className={`btn ${
+                activeBtn === "dislike" ? "dislike-active" : ""
+              }`}
+              onClick={handleDisikeClick}
+            >
+              <span className="material-symbols-rounded"></span>
+              Dislike {dislikeCount}
+            </button>
+            <button
+              className="btnotheroptions"
               type="button"
               onClick={() => navigate(`update/${props.id}`)}
             >
               Update
             </button>
             <button
-              className="favorite styled"
+              className="btnotheroptions"
               type="button"
               onClick={deletePost}
             >

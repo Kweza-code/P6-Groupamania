@@ -56,18 +56,7 @@ nav a:hover {
  
 }
 
-.post-righ__button button {
-  background: none!important;
-  border: none;
-  padding: 0!important;
-  font-family: arial, sans-serif;
-  color: #069;
-  text-decoration: none;
-  cursor: pointer;
-  margin-right: 30px;
-  
 
-} 
 .post-righ__button button span {
   margin-left: 10px;
   
@@ -97,6 +86,7 @@ nav a:hover {
   margin-left: 30px;
   display: flex;
  flex-direction: column;
+ justify-content: space-evenly;
  }
 
 
@@ -126,15 +116,39 @@ color: #eb7371;
 }
 
 .post-righ__button button {
-  background: none!important;
+  
   border: none;
-  padding: 0!important;
   font-family: arial, sans-serif;
-  color: #069;
   text-decoration: none;
   cursor: pointer;
   margin-right: 30px;
+  font-size: 15px;
+} 
 
+
+
+.btnotheroptions {
+  background: none!important;
+  color: #069;
+}
+
+.btn {
+  border: none;
+  color:#fff;
+  font-size: 0.8rem;
+  border-radius: 30px;
+  background-color: #bdc0c5;
+  border-radius: 4px;
+  padding: 6px 15px;
+  margin: 0 10px;
+}
+ 
+.like-active {
+  background-color: #FF0063;
+}
+ 
+.dislike-active {
+  background-color: #394350;
 }
 
 @media screen and (max-width: 767px) {

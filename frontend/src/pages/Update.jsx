@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Post from "../components/Post";
 
 const Update = (props) => {
-  const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/api/posts/${props.id}`, {
+    fetch(`http://localhost:3000/api/posts/636256aac39b2226e36cc8dc`, {
       method: "GET",
     })
       .then(function (res) {
@@ -13,7 +13,6 @@ const Update = (props) => {
       })
       .then((res) => {
         console.log(res);
-        setPosts(res);
       })
       .catch((err) => {
         console.log(err);
@@ -25,11 +24,11 @@ const Update = (props) => {
       <form>
         <h1>Modification de votre Publication</h1>
         <div className="inputs">
-          <label htmlFor="Title">Titre de la publication</label>
+          <label>Titre de la publication</label>
           <input type="text" name="title" value={props.title} />
-          <label htmlFor="Content">Description de la publication</label>
+          <label>Description de la publication</label>
           <input type="text" name="description" value={props.content} />
-          <label htmlFor="Image">Image de la publication</label>
+          <label>Image de la publication</label>
           <input
             id="image"
             name="image"
@@ -38,6 +37,9 @@ const Update = (props) => {
           ></input>
         </div>
         <div align="center">
+          <button className="cancel">
+            Annuler la modification et Retourner au Home
+          </button>
           <button type="submit">Publier</button>
         </div>
       </form>
