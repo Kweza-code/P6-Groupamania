@@ -13,6 +13,11 @@ const Signin = () => {
     const email = emailInput.current.value;
     const password = passwordInput.current.value;
 
+    function sendToken() {
+      const tokens = (email, password);
+      localStorage.setItem("tokens", JSON.stringify(tokens));
+    }
+
     // -- Envoyer le formulaire au backend via un fetch POST
     fetch(`http://localhost:3000/api/auth/login`, {
       method: "POST",
@@ -33,7 +38,7 @@ const Signin = () => {
       })
       .then(function (res) {
         console.log(res);
-
+        sendToken();
         navigate("/home");
       })
       .catch(function (err) {
