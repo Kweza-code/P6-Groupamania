@@ -4,6 +4,7 @@ import Post from "../components/Post";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  //Controle de la présence du token dans le local storage
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}api/posts`, {

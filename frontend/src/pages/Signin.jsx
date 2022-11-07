@@ -13,35 +13,29 @@ const Signin = () => {
     const email = emailInput.current.value;
     const password = passwordInput.current.value;
 
-    function sendToken() {
-      localStorage.setItem("token", JSON.stringify(token));
-    }
-
     // -- Envoyer le formulaire au backend via un fetch POST
-    fetch(`http://localhost:3000/api/auth/login`, {
+    fetch(`${process.env.REACT_APP_API_URL}api/auth/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: email,
         password: password,
       }),
     })
-      .then(function (res) {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then(function (res) {
-        console.log(res);
-        sendToken();
+      .then(async function (res) {
+        let responseJson = await res.json();
+        if (![200, 201].includes(res.status)) throw responseJson.error;
+        // Custom code
+        localStorage.setItem("userData", JSON.stringify(responseJson));
+
         navigate("/home");
       })
       .catch(function (err) {
         console.log(err);
+        alert(err);
       });
   };
   return (
@@ -50,9 +44,14 @@ const Signin = () => {
         <h1>Sign in</h1>
         <div className="inscription__inputs">
           <label htmlFor="email">Email</label>
-          <input type="email" placeholder="Email" ref={emailInput} />
+          <input id="email" type="email" placeholder="Email" ref={emailInput} />
           <label htmlFor="password">Password</label>
-          <input type="password" placeholder="password" ref={passwordInput} />
+          <input
+            id="password"
+            type="password"
+            placeholder="password"
+            ref={passwordInput}
+          />
         </div>
         <div className="password.error"></div>
         <p className="connexion__txt">
@@ -68,4 +67,3 @@ const Signin = () => {
 };
 
 export default Signin;
-d;

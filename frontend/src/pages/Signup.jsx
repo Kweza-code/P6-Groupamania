@@ -24,17 +24,16 @@ const Signup = () => {
         password: password,
       }),
     })
-      .then(function (res) {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then(function (res) {
-        console.log(res);
-        navigate("/home");
+      .then(async function (res) {
+        let responseJson = await res.json();
+        if (![200, 201].includes(res.status)) throw responseJson.error;
+        // Custom code
+
+        navigate("/Signin");
       })
       .catch(function (err) {
         console.log(err);
+        alert(err);
       });
   };
   return (
@@ -43,9 +42,14 @@ const Signup = () => {
         <h1>Sign up</h1>
         <div className="inscription__inputs">
           <label htmlFor="email">Email</label>
-          <input type="email" placeholder="Email" ref={emailInput} />
+          <input id="email" type="email" placeholder="Email" ref={emailInput} />
           <label htmlFor="password">Password</label>
-          <input type="password" placeholder="password" ref={passwordInput} />
+          <input
+            id="password"
+            type="password"
+            placeholder="password"
+            ref={passwordInput}
+          />
         </div>
 
         <p className="inscription__txt">

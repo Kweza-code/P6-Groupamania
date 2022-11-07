@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Post from "../components/Post";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Update = (props) => {
+  const { id } = useParams();
+  const [post, setPost] = useState({});
+
   useEffect(() => {
-    fetch(`http://localhost:3000/api/posts/636256aac39b2226e36cc8dc`, {
+    fetch(`${process.env.REACT_APP_API_URL}api/posts/${id}`, {
       method: "GET",
     })
       .then(function (res) {
@@ -13,6 +16,7 @@ const Update = (props) => {
       })
       .then((res) => {
         console.log(res);
+        setPost(res);
       })
       .catch((err) => {
         console.log(err);
@@ -25,10 +29,15 @@ const Update = (props) => {
         <h1>Modification de votre Publication</h1>
         <div className="inputs">
           <label htmlFor="title">Titre de la publication</label>
-          <input type="text" name="title" value={props.title} />
-          <label htmlFor="Description">Description de la publication</label>
-          <input type="text" name="description" value={props.content} />
-          <label htmlFor="Image of content">Image de la publication</label>
+          <input id="title" type="text" name="title" value={post.title} />
+          <label htmlFor="description">Description de la publication</label>
+          <input
+            id="description"
+            type="text"
+            name="description"
+            value={post.content}
+          />
+          <label htmlFor="image">Image de la publication</label>
           <input
             id="image"
             name="image"
@@ -37,9 +46,6 @@ const Update = (props) => {
           ></input>
         </div>
         <div align="center">
-          <button className="cancel">
-            Annuler la modification et Retourner au Home
-          </button>
           <button type="submit">Publier</button>
         </div>
       </form>
