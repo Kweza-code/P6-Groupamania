@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import React from "react";
 
 const Post = (props) => {
@@ -47,11 +48,11 @@ const Post = (props) => {
       setActiveBtn("dislike");
     }
   };
-
+  const { id } = useParams();
   const navigate = useNavigate();
   // Deleting PostD
   function deletePost() {
-    fetch(`http://localhost:3000/api/posts/${props.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}api/posts/${id}`, {
       method: "DELETE",
     })
       .then((res) => {

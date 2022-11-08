@@ -27,17 +27,21 @@ const Create = () => {
 
     function getUserToken() {
       let userToken = localStorage.getItem("token");
-      console.log("userToken");
       if (userToken != null) {
-        /////
+        console.log("Token non trouvé");
+        navigate("/signin"); 
       }
     }
 
     function getUserId() {
       let userId = localStorage.getItem("userId");
       if (userId != null) {
-        /////
+        console.log("UserId non trouvé");
       }
+    }
+
+    function isLoggedIn() {
+      getUserToken();
     }
 
     //Sending data to backend API
