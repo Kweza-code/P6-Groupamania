@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn, setUserData } from "../utils/libs";
 
 const Signin = () => {
   const emailInput = useRef();
   const passwordInput = useRef();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      navigate("/home");
+    }
+  }, []);
 
   const sendData = (event) => {
     event.preventDefault();
@@ -29,8 +36,7 @@ const Signin = () => {
         let responseJson = await res.json();
         if (![200, 201].includes(res.status)) throw responseJson.error;
         // Custom code
-        localStorage.setItem("userData", JSON.stringify(responseJson));
-
+        setUserData(responseJson);
         navigate("/home");
       })
       .catch(function (err) {

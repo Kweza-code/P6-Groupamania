@@ -1,59 +1,54 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { getUserData } from "../utils/libs";
 import React from "react";
 
 const Post = (props) => {
-  const [likeCount, setLikeCount] = useState(50);
-  const [dislikeCount, setDislikeCount] = useState(25);
-
+  const navigate = useNavigate();
+  const userData = getUserData();
+  const [likeCount, setLikeCount] = useState(props.likes);
+  const [dislikeCount, setDislikeCount] = useState(props.dislikes);
   const [activeBtn, setActiveBtn] = useState("none");
 
-  const handleLikeClick = () => {
-    if (activeBtn === "none") {
-      setLikeCount(likeCount + 1);
-      setActiveBtn("like");
-      return;
-    }
-
-    if (activeBtn === "like") {
-      setLikeCount(likeCount - 1);
-      setActiveBtn("none");
-      return;
-    }
-
-    if (activeBtn === "dislike") {
-      setLikeCount(likeCount + 1);
-      setDislikeCount(dislikeCount - 1);
-      setActiveBtn("like");
-    }
+  const handleLikeBtn = (vote) => {
+    // Sending to API
+    fetch(`${process.env.REACT_APP_API_URL}api/posts/${props.id}/like`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userData.token}`,
+      },
+      body: JSON.stringify({
+        like: vote,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        setLikeCount(res.data.likes);
+        setDislikeCount(res.data.dislikes);
+        if (vote === 1) setActiveBtn("like");
+        if (vote === -1) setActiveBtn("dislike");
+        if (vote === 0) setActiveBtn("none");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const handleDisikeClick = () => {
-    if (activeBtn === "none") {
-      setDislikeCount(dislikeCount + 1);
-      setActiveBtn("dislike");
-      return;
-    }
-
-    if (activeBtn === "dislike") {
-      setDislikeCount(dislikeCount - 1);
-      setActiveBtn("none");
-      return;
-    }
-
-    if (activeBtn === "like") {
-      setDislikeCount(dislikeCount + 1);
-      setLikeCount(likeCount - 1);
-      setActiveBtn("dislike");
-    }
-  };
-  const { id } = useParams();
-  const navigate = useNavigate();
   // Deleting PostD
   function deletePost() {
-    fetch(`${process.env.REACT_APP_API_URL}api/posts/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}api/posts/${props.id}`, {
       method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userData.token}`,
+      },
     })
       .then((res) => {
         if (res.ok) {
@@ -82,7 +77,7 @@ const Post = (props) => {
           <div className="post-righ__button">
             <button
               className={`btn ${activeBtn === "like" ? "like-active" : ""}`}
-              onClick={handleLikeClick}
+              onClick={() => handleLikeBtn(activeBtn === "like" ? 0 : 1)}
             >
               <span className="material-symbols-rounded"></span>
               Like {likeCount}
@@ -91,7 +86,7 @@ const Post = (props) => {
               className={`btn ${
                 activeBtn === "dislike" ? "dislike-active" : ""
               }`}
-              onClick={handleDisikeClick}
+              onClick={() => handleLikeBtn(activeBtn === "dislike" ? 0 : -1)}
             >
               <span className="material-symbols-rounded"></span>
               Dislike {dislikeCount}

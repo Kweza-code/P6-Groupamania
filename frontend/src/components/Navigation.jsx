@@ -1,8 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  let navigate = useNavigate();
+  function logout() {
+    localStorage.clear();
+    navigate("/signin");
+  }
   return (
     <div className="navigation">
       <nav>
@@ -20,9 +26,9 @@ const Navigation = () => {
           <NavLink to="/signup">
             <li>Signup</li>
           </NavLink>
-          <NavLink to="/signup">
-            <li>Logout</li>
-          </NavLink>
+          <button className="btnlogout" type="button" onClick={logout}>
+            logout
+          </button>
         </ul>
       </nav>
     </div>

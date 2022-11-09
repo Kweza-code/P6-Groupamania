@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { getUserData, isLoggedIn } from "../utils/libs";
 
 const Update = (props) => {
   const { id } = useParams();
+  let navigate = useNavigate();
+  const userData = getUserData();
   const [post, setPost] = useState({});
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/posts/${id}`, {
-      method: "GET",
-    })
-      .then(function (res) {
-        if (res.ok) {
-          return res.json();
-        }
+    if (isLoggedIn() === false) {
+      navigate("/signin");
+    } else {
+      fetch(`${process.env.REACT_APP_API_URL}api/posts/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userData.token}`,
+        },
       })
-      .then((res) => {
-        console.log(res);
-        setPost(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then(function (res) {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((res) => {
+          console.log(res);
+          setPost(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (

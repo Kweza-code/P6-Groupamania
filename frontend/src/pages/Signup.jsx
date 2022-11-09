@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn, getUserData } from "../utils/libs";
 
 const Signup = () => {
   const emailInput = useRef();
   const passwordInput = useRef();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      navigate("/home");
+    }
+  }, []);
+
   const sendData = (event) => {
     event.preventDefault();
     const email = emailInput.current.value;
@@ -29,7 +37,7 @@ const Signup = () => {
         if (![200, 201].includes(res.status)) throw responseJson.error;
         // Custom code
 
-        navigate("/Signin");
+        navigate("/signin");
       })
       .catch(function (err) {
         console.log(err);

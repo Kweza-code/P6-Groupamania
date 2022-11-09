@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { isLoggedIn, getUserData } from "../utils/libs";
 
 import Post from "../components/Post";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
-  //Controle de la présence du token dans le local storage
+  let navigate = useNavigate();
+  const userData = getUserData();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/posts`, {
-      method: "GET",
-    })
-      .then(function (res) {
-        if (res.ok) {
-          return res.json();
-        }
+    if (isLoggedIn() === false) {
+      navigate("/signin");
+    } else {
+      fetch(`${process.env.REACT_APP_API_URL}api/posts`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userData.token}`,
+        },
       })
-      .then((res) => {
-        console.log(res);
-        setPosts(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then(function (res) {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((res) => {
+          console.log(res);
+          setPosts(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (
@@ -36,8 +48,8 @@ const Home = () => {
             author={post.author}
             imageUrl={post.imageUrl}
             title={post.title}
-            dislikes={post.dislikes}
             likes={post.likes}
+            dislikes={post.dislikes}
           />
         ))}
       </section>

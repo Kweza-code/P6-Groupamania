@@ -9,7 +9,7 @@ exports.createPost = (req, res, next) => {
       req.file.filename
     }`,
   });
-  post.userId = "@Thomas";
+  post.userId = req.auth.userId;
   post.likes = 0;
   post.dislikes = 0;
   post.usersLiked = [];
@@ -90,52 +90,61 @@ exports.deletePost = (req, res, next) => {
 };
 //----------------------------------------------------------
 exports.likePost = (req, res, next) => {
-  if (req.body.like === 1) {
-    Post.updateOne(
-      { _id: req.params.id },
-      {
-        $inc: { likes: req.body.like++ },
-        $push: { usersLiked: req.body.userId },
-      }
-    )
-      .then((post) => res.status(200).json({ message: "Like ajouté !" }))
-      .catch((error) => res.status(400).json({ error }));
-  } else if (req.body.like === -1) {
-    Post.updateOne(
-      { _id: req.params.id },
-      {
-        $inc: { dislikes: req.body.like++ * -1 },
-        $push: { usersDisliked: req.body.userId },
-      }
-    )
-      .then((post) => res.status(200).json({ message: "Dislike ajouté !" }))
-      .catch((error) => res.status(400).json({ error }));
-  } else {
-    Post.findOne({ _id: req.params.id })
-      .then((post) => {
-        if (post.usersLiked.includes(req.body.userId)) {
-          Post.updateOne(
-            { _id: req.params.id },
-            { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } }
-          )
-            .then((post) => {
-              res.status(200).json({ message: "Like supprimé !" });
-            })
-            .catch((error) => res.status(400).json({ error }));
-        } else if (post.usersDisliked.includes(req.body.userId)) {
-          Post.updateOne(
-            { _id: req.params.id },
-            {
-              $pull: { usersDisliked: req.body.userId },
-              $inc: { dislikes: -1 },
-            }
-          )
-            .then((post) => {
-              res.status(200).json({ message: "Dislike supprimé !" });
-            })
-            .catch((error) => res.status(400).json({ error }));
+  // Identification of the post
+  Post.findOne({ _id: req.params.id })
+    .then(async (post) => {
+      if (!post) {
+        res.status(404).json({ message: "The post does not exist" });
+      } else {
+        // On met en place des variables tampons
+        let likes = post.likes;
+        let dislikes = post.dislikes;
+        let usersLiked = post.usersLiked;
+        let usersDisliked = post.usersDisliked;
+        // On ajuste
+        switch (req.body.like) {
+          case 1:
+            usersDisliked = usersDisliked.filter(
+              (element) => element !== req.auth.userId
+            );
+            usersLiked.addToSet(req.auth.userId);
+            break;
+          case -1:
+            usersLiked = usersLiked.filter(
+              (element) => element !== req.auth.userId
+            );
+            usersDisliked.addToSet(req.auth.userId);
+            break;
+          case 0:
+            usersLiked = usersLiked.filter(
+              (element) => element !== req.auth.userId
+            );
+            usersDisliked = usersDisliked.filter(
+              (element) => element !== req.auth.userId
+            );
+            break;
+          default:
+            res.status(400).send({ message: "Unknown value " });
+            return;
         }
-      })
-      .catch((error) => res.status(400).json({ error }));
-  }
+        // On met à jour les totaux
+        likes = usersLiked.length;
+        dislikes = usersDisliked.length;
+        // On sauvegarde notre post
+        let data = {
+          usersLiked: usersLiked,
+          usersDisliked: usersDisliked,
+          likes: likes,
+          dislikes: dislikes,
+        };
+        await post.updateOne(data);
+        res.status(200).send({ message: "Modification like made", data: data });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        error: error,
+      });
+    });
 };

@@ -1,12 +1,19 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useRef } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { getUserData, isLoggedIn } from "../utils/libs";
 
 const Create = () => {
+  const userData = getUserData();
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn() === false) {
+      navigate("/signin");
+    }
+  }, []);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -25,36 +32,19 @@ const Create = () => {
     );
     formData.append("image", document.getElementById("image").files[0]);
 
-    function getUserToken() {
-      let userToken = localStorage.getItem("token");
-      if (userToken != null) {
-        console.log("Token non trouvé");
-        navigate("/signin"); 
-      }
-    }
-
-    function getUserId() {
-      let userId = localStorage.getItem("userId");
-      if (userId != null) {
-        console.log("UserId non trouvé");
-      }
-    }
-
-    function isLoggedIn() {
-      getUserToken();
-    }
-
     //Sending data to backend API
     fetch(`${process.env.REACT_APP_API_URL}api/posts`, {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${userData.token}`,
+      },
     })
       .then(async function (res) {
         let responseJson = await res.json();
         if (![200, 201].includes(res.status)) throw responseJson.error;
       })
       .then(function (post) {
-        getUserToken();
         navigate("/home");
       })
       .catch(function (err) {
