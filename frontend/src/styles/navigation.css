@@ -177,6 +177,7 @@ color: #eb7371;
 .post {
   flex-direction: column;
   width:auto ;
+  text-align: center;
 }
 
 .post-left {
@@ -186,7 +187,7 @@ color: #eb7371;
 
 
 .post-right {
-  max-width: 100%;
+width: 100%;
   margin-left: 0px;
 }
 
