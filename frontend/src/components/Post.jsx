@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getUserData } from "../utils/libs";
 import React from "react";
+//userData.userId
 
 const Post = (props) => {
   const navigate = useNavigate();
@@ -70,11 +71,11 @@ const Post = (props) => {
       </div>
       <div className="post-right">
         <p className="post-right__date">{props.date}</p>
-        <h2>{props.title}</h2>
+        <h2 className="post-right__title">{props.title}</h2>
         <p className="post-right__description">{props.description}</p>
         <p className="post-right__author">{props.author}</p>
         <div className="post-right__buttons">
-          <div className="post-righ__button">
+          <div className="post-right__button">
             <button
               className={`btn ${activeBtn === "like" ? "like-active" : ""}`}
               onClick={() => handleLikeBtn(activeBtn === "like" ? 0 : 1)}
@@ -97,11 +98,15 @@ const Post = (props) => {
               onClick={() => navigate(`update/${props.id}`)}
             >
               Update
-            </button>
+            </button>{" "}
             <button
               className="btnotheroptions"
               type="button"
-              onClick={deletePost}
+              onClick={() => {
+                if (window.confirm("Voulez-vous supprimer cet article ?")) {
+                  deletePost();
+                }
+              }}
             >
               Delete
             </button>

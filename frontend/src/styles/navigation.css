@@ -79,6 +79,7 @@ nav a:hover {
   width: 100%;
   border-radius: 30px;
   object-fit: cover;
+  flex-wrap: wrap;
  }
 
  .post-right {
@@ -87,6 +88,7 @@ nav a:hover {
   display: flex;
  flex-direction: column;
  justify-content: space-evenly;
+ flex-wrap: wrap;
  }
 
 
@@ -172,9 +174,16 @@ color: #eb7371;
     flex-wrap: wrap;
 }
 
-.post-left img {
-  height: auto;
+.post {
+  flex-direction: column;
+  width:auto ;
 }
+
+.post-left {
+  width: auto;
+}
+
+
 
 .post-right {
   max-width: 100%;
@@ -187,6 +196,3 @@ color: #eb7371;
 }
     
 }
-
-
-
