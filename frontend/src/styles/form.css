@@ -30,6 +30,15 @@ form .inputs {
   flex-direction: column;
 }
 
+.publish {
+  margin-top: 40px;
+}
+
+.btnotheroptions {
+  border: none;
+  cursor: pointer;
+}
+
 
 
 
@@ -79,3 +88,4 @@ outline:none;
 margin-bottom: 15px;
 
 }
+

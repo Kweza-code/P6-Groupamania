@@ -10,6 +10,7 @@ const Post = (props) => {
   const [likeCount, setLikeCount] = useState(props.likes);
   const [dislikeCount, setDislikeCount] = useState(props.dislikes);
   const [activeBtn, setActiveBtn] = useState("none");
+  const [post, setPosts] = useState([]);
 
   const handleLikeBtn = (vote) => {
     // Sending to API
@@ -64,6 +65,18 @@ const Post = (props) => {
         console.log(err);
       });
   }
+
+  function update() {
+    if (userData.userId === post.userId)
+      <button
+        className="btnotheroptions"
+        type="button"
+        onClick={() => navigate(`update/${props.id}`)}
+      >
+        Update
+      </button>;
+  }
+
   return (
     <div className="post" id={"post-" + props.id}>
       <div className="post-left">
@@ -92,13 +105,15 @@ const Post = (props) => {
               <span className="material-symbols-rounded"></span>
               Dislike {dislikeCount}
             </button>
-            <button
-              className="btnotheroptions"
-              type="button"
-              onClick={() => navigate(`update/${props.id}`)}
-            >
-              Update
-            </button>{" "}
+            {userData.userId === post._id && (
+              <button
+                className="btnotheroptions"
+                type="button"
+                onClick={() => navigate(`update/${props.id}`)}
+              >
+                Update
+              </button>
+            )}
             <button
               className="btnotheroptions"
               type="button"

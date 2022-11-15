@@ -1,20 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, renderMatches } from "react-router-dom";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 const Navigation = () => {
+  const [post, setPosts] = useState([]);
+
   //Logout
   let navigate = useNavigate();
   function logout() {
     localStorage.clear();
     navigate("/signin");
-  }
-
-  function Create() {
-    <NavLink to="/create">
-      <li>Create</li>
-    </NavLink>;
   }
 
   return (
@@ -25,6 +21,7 @@ const Navigation = () => {
           <NavLink to="/">
             <li>Home</li>
           </NavLink>
+
           <NavLink to="/create">
             <li>Create</li>
           </NavLink>
@@ -32,6 +29,7 @@ const Navigation = () => {
           <NavLink to="/signin">
             <li>Signin</li>
           </NavLink>
+
           <NavLink to="/signup">
             <li>Signup</li>
           </NavLink>

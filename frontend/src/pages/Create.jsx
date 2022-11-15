@@ -76,7 +76,9 @@ const Create = () => {
           ></input>
         </div>
         <div align="center">
-          <button type="submit">Publier</button>
+          <button className="publish" type="submit">
+            Publier
+          </button>
         </div>
       </form>
     </div>

@@ -7,7 +7,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Update from "./pages/Update";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+
 const App = () => {
   return (
     <BrowserRouter>
