@@ -39,3 +39,16 @@ nav a:hover {
 	
 }
 
+.btnlogout {
+border: none;
+background: none;
+cursor: pointer;
+color: #545454;
+font-size: 18px;
+}
+
+.btnlogout:hover {
+  color: black;
+
+}
+
