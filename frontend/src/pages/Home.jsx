@@ -43,13 +43,15 @@ const Home = () => {
           <Post
             key={post._id}
             id={post._id}
+            userId={post.userId}
             date={post.date}
-            description={post.content}
-            author={post.author}
-            imageUrl={post.imageUrl}
             title={post.title}
+            description={post.content}
+            imageUrl={post.imageUrl}
             likes={post.likes}
             dislikes={post.dislikes}
+            usersLiked={post.usersLiked}
+            usersDisliked={post.usersDisliked}
           />
         ))}
       </section>

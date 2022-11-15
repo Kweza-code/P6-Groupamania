@@ -2,15 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getUserData } from "../utils/libs";
 import React from "react";
-//userData.userId
 
 const Post = (props) => {
   const navigate = useNavigate();
   const userData = getUserData();
   const [likeCount, setLikeCount] = useState(props.likes);
   const [dislikeCount, setDislikeCount] = useState(props.dislikes);
-  const [activeBtn, setActiveBtn] = useState("none");
-  const [post, setPosts] = useState([]);
+
+  let currentActiveBtn = "none";
+  if (props.usersLiked.includes(userData.userId)) currentActiveBtn = "like";
+  if (props.usersDisliked.includes(userData.userId))
+    currentActiveBtn = "dislike";
+  const [activeBtn, setActiveBtn] = useState(currentActiveBtn);
 
   const handleLikeBtn = (vote) => {
     // Sending to API
@@ -66,17 +69,6 @@ const Post = (props) => {
       });
   }
 
-  function update() {
-    if (userData.userId === post.userId)
-      <button
-        className="btnotheroptions"
-        type="button"
-        onClick={() => navigate(`update/${props.id}`)}
-      >
-        Update
-      </button>;
-  }
-
   return (
     <div className="post" id={"post-" + props.id}>
       <div className="post-left">
@@ -86,7 +78,6 @@ const Post = (props) => {
         <p className="post-right__date">{props.date}</p>
         <h2 className="post-right__title">{props.title}</h2>
         <p className="post-right__description">{props.description}</p>
-        <p className="post-right__author">{props.author}</p>
         <div className="post-right__buttons">
           <div className="post-right__button">
             <button
@@ -105,7 +96,7 @@ const Post = (props) => {
               <span className="material-symbols-rounded"></span>
               Dislike {dislikeCount}
             </button>
-            {userData.userId === post._id && (
+            {(userData.userId === props.userId || userData.admin === true) && (
               <button
                 className="btnotheroptions"
                 type="button"
@@ -114,17 +105,19 @@ const Post = (props) => {
                 Update
               </button>
             )}
-            <button
-              className="btnotheroptions"
-              type="button"
-              onClick={() => {
-                if (window.confirm("Voulez-vous supprimer cet article ?")) {
-                  deletePost();
-                }
-              }}
-            >
-              Delete
-            </button>
+            {(userData.userId === props.userId || userData.admin === true) && (
+              <button
+                className="btnotheroptions"
+                type="button"
+                onClick={() => {
+                  if (window.confirm("Voulez-vous supprimer cet article ?")) {
+                    deletePost();
+                  }
+                }}
+              >
+                Delete
+              </button>
+            )}
           </div>
         </div>
       </div>
