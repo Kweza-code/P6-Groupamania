@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn, getUserData } from "../utils/libs";
 
 const Signup = () => {
-  const emailInput = useRef();
-  const passwordInput = useRef();
   let navigate = useNavigate();
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   useEffect(() => {
     if (isLoggedIn()) {
       navigate("/home");
@@ -17,8 +15,6 @@ const Signup = () => {
 
   const sendData = (event) => {
     event.preventDefault();
-    const email = emailInput.current.value;
-    const password = passwordInput.current.value;
 
     // -- Envoyer le formulaire au backend via un fetch POST
     fetch(`${process.env.REACT_APP_API_URL}api/auth/signup`, {
@@ -50,13 +46,20 @@ const Signup = () => {
         <h1>Sign up</h1>
         <div className="inscription__inputs">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder="Email" ref={emailInput} />
+          <input
+            id="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
             placeholder="password"
-            ref={passwordInput}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
