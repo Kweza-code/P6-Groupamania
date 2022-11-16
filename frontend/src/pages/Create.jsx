@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 import { getUserData, isLoggedIn } from "../utils/libs";
 
 const Create = () => {
   const userData = getUserData();
-  const titleInputRef = useRef();
-  const descriptionInputRef = useRef();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -17,9 +16,6 @@ const Create = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
-    const title = titleInputRef.current.value;
-    const content = descriptionInputRef.current.value;
 
     //Preparing the data we want to send to the backend API
     let formData = new FormData();
@@ -33,6 +29,7 @@ const Create = () => {
     formData.append("image", document.getElementById("image").files[0]);
 
     //Sending data to backend API
+
     fetch(`${process.env.REACT_APP_API_URL}api/posts`, {
       method: "POST",
       body: formData,
@@ -59,13 +56,20 @@ const Create = () => {
         <h1>Création d'une publication</h1>
         <div className="inputs">
           <label htmlFor="title">Titre de la publication</label>
-          <input id="title" type="text" ref={titleInputRef} name="title" />
+          <input
+            id="title"
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <label htmlFor="content">Description de la publication</label>
           <input
             id="content"
             type="text"
-            ref={descriptionInputRef}
             name="description"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
           <label htmlFor="image">Image de la publication</label>
           <input
