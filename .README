@@ -1,0 +1,11 @@
+Test du site Groupamania
+
+FRONTEND
+Cloner https://github.com/innocent75/Project7/tree/main/frontend
+Installer les dépendances avec npm install
+npm start pour lancer le frontend
+(si soucis lors du lancement du frontend, veuillez vous dirigez vers le package.json, changer la ligne scripts --> start par "start": " PORT=4200 react-scripts start", )
+
+BACKEND Cloner https://github.com/innocent75/Project7/tree/main/backend
+Installer les dépendances avec npm install
+nodemon server pour lancer le backend
