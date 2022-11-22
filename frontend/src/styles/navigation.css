@@ -18,6 +18,7 @@
 
 .navigation ul {
    display: flex;
+   align-items: baseline;
 }
 
 .navigation nav h2 {
@@ -44,7 +45,7 @@ border: none;
 background: none;
 cursor: pointer;
 color: #545454;
-font-size: 18px;
+font-size: 15px;
 }
 
 .btnlogout:hover {
