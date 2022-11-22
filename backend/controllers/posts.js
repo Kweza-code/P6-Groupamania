@@ -72,9 +72,11 @@ exports.modifyPost = (req, res, next) => {
 };
 //----------------------------------------------------------
 exports.deletePost = (req, res, next) => {
-  Post.findOne({ _id: req.params.id })
+  Post.findOne({ _id: req.params.id });
+  User.findOne({ _id: req.auth.userId })
+    .then(myUser)
     .then((post) => {
-      if (post.userId !== req.auth.userId) {
+      if (post.userId !== req.auth.userId || myUser.admin !== true) {
         res.status(400).json({ error: error });
       } else {
         const filename = post.imageUrl.split("/images/")[1];
