@@ -63,6 +63,7 @@ const Post = (props) => {
       })
       .then((res) => {
         console.log(res);
+        document.getElementById(`post-${props.id}`).remove();
       })
       .catch((err) => {
         console.log(err);

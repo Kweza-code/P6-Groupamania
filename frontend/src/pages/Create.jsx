@@ -6,6 +6,7 @@ const Create = () => {
   const userData = getUserData();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
   let navigate = useNavigate();
 
   //check if he/she is loggin if not, he/she won't be able to be in the page and will be send to  signin
@@ -27,10 +28,9 @@ const Create = () => {
         content: content,
       })
     );
-    formData.append("image", document.getElementById("image").files[0]);
+    formData.append("image", image);
 
     //Sending data to backend API
-
     fetch(`${process.env.REACT_APP_API_URL}api/posts`, {
       method: "POST",
       body: formData,
@@ -43,7 +43,7 @@ const Create = () => {
         if (![200, 201].includes(res.status)) throw responseJson.error;
       })
       .then(function (post) {
-        navigate("/home");
+        navigate("/");
       })
       .catch(function (err) {
         console.log(err);
@@ -78,6 +78,7 @@ const Create = () => {
             name="image"
             type="file"
             accept="image/png, image/jpeg"
+            onChange={(e) => setImage(e.target.files[0])}
           ></input>
         </div>
         <div align="center">

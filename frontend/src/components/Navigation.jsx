@@ -42,7 +42,7 @@ const Navigation = () => {
           )}
           {isLoggedIn() && (
             <button className="btnlogout" type="button" onClick={logout}>
-              logout
+              Logout
             </button>
           )}
         </ul>

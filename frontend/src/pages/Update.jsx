@@ -7,7 +7,7 @@ const Update = (props) => {
   let navigate = useNavigate();
   const userData = getUserData();
   const [post, setPost] = useState({});
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
 
   function setTitle(newTitle) {
     setPost({ ...post, title: newTitle });
@@ -55,7 +55,7 @@ const Update = (props) => {
         content: post.content,
       })
     );
-    formData.append("image", image);
+    if (image !== "") formData.append("image", image);
 
     //Sending data to backend API
     fetch(`${process.env.REACT_APP_API_URL}api/posts/${id}`, {
@@ -70,7 +70,7 @@ const Update = (props) => {
         if (![200, 201].includes(res.status)) throw responseJson.error;
       })
       .then(function (post) {
-        navigate("/home");
+        navigate("/");
       })
       .catch(function (err) {
         console.log(err);

@@ -11,7 +11,7 @@ const Signup = () => {
   //Checking if he/she is logged in, if yes, he/she will be send to the home page
   useEffect(() => {
     if (isLoggedIn()) {
-      navigate("/home");
+      navigate("/");
     }
   }, []);
 

@@ -1,6 +1,17 @@
 const Post = require("../models/posts");
+const User = require("../models/users");
 const fs = require("fs");
 
+// Allows to check if a userId is admin
+async function isUserAdmin(userId) {
+  try {
+    currentUser = await User.findOne({ _id: userId });
+    return currentUser.admin;
+  } catch (err) {
+    return false;
+  }
+}
+//----------------------------------------------------------
 exports.createPost = (req, res, next) => {
   const postObject = JSON.parse(req.body.post);
   const post = new Post({
@@ -18,10 +29,8 @@ exports.createPost = (req, res, next) => {
     .save()
     .then(() => res.status(201).json({ message: "Post postée !" }))
     .catch((error) => res.status(400).json({ error: error }));
-  console.log(post.userId);
 };
 //----------------------------------------------------------
-
 exports.getOnePost = (req, res, next) => {
   Post.findOne({ _id: req.params.id })
     .then((post) => res.status(200).json(post))
@@ -35,14 +44,13 @@ exports.getAllPosts = (req, res, next) => {
     .catch((error) => res.status(400).json({ error: error }));
 };
 //----------------------------------------------------------
-exports.modifyPost = (req, res, next) => {
+exports.modifyPost = async (req, res, next) => {
+  // Checking if current user is admin from DB
+  let isCurrentUserAdmin = await isUserAdmin(req.auth.userId);
   // Loading post
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      // Veryfiying userId
-      if (post.userId !== req.auth.userId) {
-        res.status(403).json({ error: "Vous n'êtes pas l'auteur du post" });
-      } else {
+      if (post.userId === req.auth.userId || isCurrentUserAdmin === true) {
         // Deleting image
         if (req.file) {
           const filename = post.imageUrl.split("/images/")[1];
@@ -56,7 +64,7 @@ exports.modifyPost = (req, res, next) => {
                 req.file.filename
               }`,
             }
-          : { ...req.body };
+          : { ...JSON.parse(req.body.post) };
         // Updating the post in DB
         Post.updateOne(
           { _id: req.params.id },
@@ -66,25 +74,39 @@ exports.modifyPost = (req, res, next) => {
             res.status(201).json({ message: "Post updated successfully!" })
           )
           .catch((error) => res.status(400).json({ error: error }));
+      } else {
+        res
+          .status(403)
+          .json({ error: "You are not the sauce owner nor admin" });
       }
     })
     .catch((error) => res.status(404).json({ error }));
 };
 //----------------------------------------------------------
-exports.deletePost = (req, res, next) => {
-  Post.findOne({ _id: req.params.id });
-  User.findOne({ _id: req.auth.userId })
-    .then(myUser)
+exports.deletePost = async (req, res, next) => {
+  // Checking if current user is admin from DB
+  let isCurrentUserAdmin = await isUserAdmin(req.auth.userId);
+  Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId !== req.auth.userId || myUser.admin !== true) {
-        res.status(400).json({ error: error });
+      if (!post) {
+        res.status(404).json({ error: error });
       } else {
-        const filename = post.imageUrl.split("/images/")[1];
-        fs.unlink(`images/${filename}`, () => {
-          Post.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: "Deleted!" }))
-            .catch((error) => res.status(400).json({ error: error }));
-        });
+        if (post.userId === req.auth.userId || isCurrentUserAdmin === true) {
+          const filename = post.imageUrl.split("/images/")[1];
+          fs.unlink(`images/${filename}`, () => {
+            Post.deleteOne({ _id: req.params.id })
+              .then(() => {
+                res.status(200).json({ success: true, message: "Deleted!" });
+              })
+              .catch((error) => {
+                res.status(400).json({ error: error });
+              });
+          });
+        } else {
+          res
+            .status(403)
+            .json({ error: "You are not the sauce owner nor admin" });
+        }
       }
     })
     .catch((error) => res.status(500).json({ error }));

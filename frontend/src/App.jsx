@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Update from "./pages/Update";
+import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -14,11 +15,11 @@ const App = () => {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/*" element={<Home />} />
-        <Route path="create" element={<Create />} />
+        <Route path="/create" element={<Create />} />
         <Route path="/update/:id" element={<Update />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
