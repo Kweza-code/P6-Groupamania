@@ -10,6 +10,7 @@ const Post = (props) => {
   const [dislikeCount, setDislikeCount] = useState(props.dislikes);
 
   let currentActiveBtn = "none";
+  //checking userdata.userId in the localstore to active The currentActiveBtn
   if (props.usersLiked.includes(userData.userId)) currentActiveBtn = "like";
   if (props.usersDisliked.includes(userData.userId))
     currentActiveBtn = "dislike";
@@ -45,7 +46,7 @@ const Post = (props) => {
       });
   };
 
-  // Deleting PostD
+  // Deleting Postid
   function deletePost() {
     fetch(`${process.env.REACT_APP_API_URL}api/posts/${props.id}`, {
       method: "DELETE",
@@ -62,7 +63,6 @@ const Post = (props) => {
       })
       .then((res) => {
         console.log(res);
-        document.getElementById(`post-${props.id}`).remove();
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +75,6 @@ const Post = (props) => {
         <img src={props.imageUrl} alt={props.title} />
       </div>
       <div className="post-right">
-        <p className="post-right__date">{props.date}</p>
         <h2 className="post-right__title">{props.title}</h2>
         <p className="post-right__description">{props.description}</p>
         <div className="post-right__buttons">

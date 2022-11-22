@@ -112,33 +112,8 @@
   .dislike-active {
     background-color: #394350;
   }
-  
-  @media screen and (max-width: 767px) {
-    .navigation nav h2 {
-      display: none;
+  @media screen and (max-width: 767px)   {
     
-    }
-  
-    .navigation nav {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  
-    .navigation ul {
-      font-size: 10px;
-    }
-  
-    
-  
-    nav a {
-      text-decoration: none;
-      color: #545454;
-      
-      list-style-type: none;
-      flex-wrap: wrap;
-  }
   
   .post {
     flex-direction: column;
@@ -162,8 +137,6 @@
     font-size: 13px;
     
   }
-  .btnlogout {
-    font-size: 10px;
-  }
+
       
   }

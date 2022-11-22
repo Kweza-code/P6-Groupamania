@@ -8,6 +8,8 @@ const Signin = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //Checking if he/she is logged in, if yes, he/she will be send to the home page
   useEffect(() => {
     if (isLoggedIn()) {
       navigate("/home");

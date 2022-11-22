@@ -8,6 +8,7 @@ const Create = () => {
   const [content, setContent] = useState("");
   let navigate = useNavigate();
 
+  //check if he/she is loggin if not, he/she won't be able to be in the page and will be send to  signin
   useEffect(() => {
     if (isLoggedIn() === false) {
       navigate("/signin");

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn, getUserData } from "../utils/libs";
+import { isLoggedIn } from "../utils/libs";
 
 const Signup = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //Checking if he/she is logged in, if yes, he/she will be send to the home page
   useEffect(() => {
     if (isLoggedIn()) {
       navigate("/home");

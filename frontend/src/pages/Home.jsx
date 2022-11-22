@@ -36,6 +36,7 @@ const Home = () => {
     }
   }, []);
 
+  //using the method map the get our élement
   return (
     <div>
       <section className="posts">
@@ -44,7 +45,6 @@ const Home = () => {
             key={post._id}
             id={post._id}
             userId={post.userId}
-            date={post.date}
             title={post.title}
             description={post.content}
             imageUrl={post.imageUrl}

@@ -18,6 +18,7 @@ const Update = (props) => {
   }
 
   useEffect(() => {
+    //checking if he/she is logged in if not he/she will be send to the sign in page
     if (isLoggedIn() === false) {
       navigate("/signin");
     } else {

@@ -52,3 +52,37 @@ font-size: 18px;
 
 }
 
+@media screen and (max-width: 767px)  {
+  .navigation nav h2 {
+    display: none;
+  
+  }
+
+  .navigation nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navigation ul {
+    font-size: 10px;
+    align-items: baseline;
+  }
+
+  
+
+  nav a {
+    text-decoration: none;
+    color: #545454;
+    
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.btnlogout {
+  font-size: 10px;
+}
+
+}
+
