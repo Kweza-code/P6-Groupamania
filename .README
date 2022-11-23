@@ -9,3 +9,6 @@ npm start pour lancer le frontend
 BACKEND Cloner https://github.com/innocent75/Project7/tree/main/backend
 Installer les dépendances avec npm install
 nodemon server pour lancer le backend
+
+
+ADMIN ACCOUNT :  adresse émail : admin@admin.com | password : admin@admin.com
