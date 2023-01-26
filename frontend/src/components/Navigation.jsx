@@ -41,7 +41,7 @@ const Navigation = () => {
             </NavLink>
           )}
           {isLoggedIn() && (
-            <button className="btnlogout" type="button" onClick={logout}>
+            <button className="btnlogout styleBtn" type="button" onClick={logout}>
               Logout
             </button>
           )}

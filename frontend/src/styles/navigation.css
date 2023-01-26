@@ -35,13 +35,59 @@ nav a:hover {
   color: black;
 }
 
+
+
 .btnlogout {
-  border: none;
-  background: none;
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
   cursor: pointer;
-  color: #545454;
-  font-size: 15px;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
+.btnlogout:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.btnlogout:hover:after {
+  transform: translate(0, 0);
+}
+
+.btnlogout:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.btnlogout:hover {
+  outline: 0;
+}
+
 
 .btnlogout:hover {
   color: black;
@@ -52,27 +98,66 @@ nav a:hover {
     display: none;
   }
 
+ .none {
+   display: none;
+ }
+
   .navigation nav {
-    display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .navigation ul {
-    font-size: 10px;
+    font-size: 20px;
     align-items: baseline;
+    padding: 0;
   }
 
-  nav a {
+  .styleBtn {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, 0.7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+      sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: 8px 0.8em;
+    position: relative;
+    text-align: center;
     text-decoration: none;
-    color: #545454;
-
-    list-style-type: none;
-    flex-wrap: wrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
   }
 
-  .btnlogout {
-    font-size: 10px;
+
+  .styleBtn:hover,
+  .styleBtn:focus {
+    background-color: #b3d3ea;
+    color: #2c5777;
+  }
+
+  .styleBtn::after {
+    display: none;
+  }
+  .styleBtn:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+  }
+
+  .bstyleBtn:active {
+    background-color: #a0c7e4;
+    box-shadow: none;
+    color: #2c5777;
   }
 }

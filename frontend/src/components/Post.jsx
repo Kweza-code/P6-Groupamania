@@ -87,7 +87,6 @@ const Post = (props) => {
               className={`btn ${activeBtn === "like" ? "like-active" : ""}`}
               onClick={() => handleLikeBtn(activeBtn === "like" ? 0 : 1)}
             >
-              <span className="material-symbols-rounded"></span>
               <AiFillLike />
               {likeCount}
             </button>
@@ -97,7 +96,6 @@ const Post = (props) => {
               }`}
               onClick={() => handleLikeBtn(activeBtn === "dislike" ? 0 : -1)}
             >
-              <span className="material-symbols-rounded"></span>
               <AiFillDislike />
               {dislikeCount}
             </button>
