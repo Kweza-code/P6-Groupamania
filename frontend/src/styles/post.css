@@ -13,8 +13,23 @@
   border-radius: 10px;
   width: 700px;
   margin-bottom: 100px;
+  animation: itemOpacity 3s;
+  animation-timing-function: cubic-bezier(.5,1.58,.34,.82);
+  animation-fill-mode: both;
+
 }
 
+@keyframes itemOpacity {
+  0% {
+      opacity: 0;
+      transform: translateX(40px)
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateX(0)
+  }
+}
 
 .post-left img {
   height: 300px;

@@ -82,6 +82,7 @@ const Post = (props) => {
       <div className="post-right">
         <h2 className="post-right__title">{props.title}</h2>
         <p className="post-right__description">{props.description}</p>
+        
         <div className="post-right__button">
           <div className="btn1 btnn ">
             <button

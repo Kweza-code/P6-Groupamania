@@ -7,6 +7,7 @@ const Signup = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
 
   //Checking if he/she is logged in, if yes, he/she will be send to the home page
   useEffect(() => {
@@ -28,6 +29,7 @@ const Signup = () => {
       body: JSON.stringify({
         email: email,
         password: password,
+        userName: userName,
       }),
     })
       .then(async function (res) {

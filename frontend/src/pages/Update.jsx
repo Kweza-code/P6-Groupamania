@@ -88,6 +88,7 @@ const Update = (props) => {
             id="title"
             type="text"
             name="title"
+            maxLength='100'
             value={post.title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -96,6 +97,7 @@ const Update = (props) => {
             id="description"
             type="text"
             name="description"
+            maxLength='200'
             value={post.content}
             onChange={(e) => setContent(e.target.value)}
           />

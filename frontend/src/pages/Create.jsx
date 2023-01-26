@@ -61,7 +61,7 @@ const Create = () => {
             id="title"
             type="text"
             name="title"
-            maxLength='100'
+            maxLength="100"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -71,7 +71,7 @@ const Create = () => {
             type="text"
             name="description"
             value={content}
-            maxLength='200'
+            maxLength="200"
             onChange={(e) => setContent(e.target.value)}
           />
           <label htmlFor="image">Image de la publication</label>
@@ -82,6 +82,7 @@ const Create = () => {
             accept="image/png, image/jpeg"
             onChange={(e) => setImage(e.target.files[0])}
           ></input>
+         
         </div>
         <div align="center">
           <button className="publish" type="submit">
