@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getUserData } from "../utils/libs";
+import { AiFillLike, AiFillDislike } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
+import { GrUpdate } from "react-icons/gr";
 import React from "react";
 
 const Post = (props) => {
@@ -78,14 +81,15 @@ const Post = (props) => {
       <div className="post-right">
         <h2 className="post-right__title">{props.title}</h2>
         <p className="post-right__description">{props.description}</p>
-        <div className="post-right__buttons">
-          <div className="post-right__button">
+        <div className="post-right__button">
+          <div className="btn1 btnn ">
             <button
               className={`btn ${activeBtn === "like" ? "like-active" : ""}`}
               onClick={() => handleLikeBtn(activeBtn === "like" ? 0 : 1)}
             >
               <span className="material-symbols-rounded"></span>
-              Like {likeCount}
+              <AiFillLike />
+              {likeCount}
             </button>
             <button
               className={`btn ${
@@ -94,15 +98,18 @@ const Post = (props) => {
               onClick={() => handleLikeBtn(activeBtn === "dislike" ? 0 : -1)}
             >
               <span className="material-symbols-rounded"></span>
-              Dislike {dislikeCount}
+              <AiFillDislike />
+              {dislikeCount}
             </button>
+          </div>
+          <div className="btn1 btnn">
             {(userData.userId === props.userId || userData.admin === true) && (
               <button
                 className="btnotheroptions"
                 type="button"
                 onClick={() => navigate(`update/${props.id}`)}
               >
-                Update
+                <GrUpdate />
               </button>
             )}
             {(userData.userId === props.userId || userData.admin === true) && (
@@ -115,7 +122,7 @@ const Post = (props) => {
                   }
                 }}
               >
-                Delete
+                <BsTrash />
               </button>
             )}
           </div>

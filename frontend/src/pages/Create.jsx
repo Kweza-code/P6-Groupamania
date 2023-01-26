@@ -61,6 +61,7 @@ const Create = () => {
             id="title"
             type="text"
             name="title"
+            maxLength='100'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -70,6 +71,7 @@ const Create = () => {
             type="text"
             name="description"
             value={content}
+            maxLength='200'
             onChange={(e) => setContent(e.target.value)}
           />
           <label htmlFor="image">Image de la publication</label>

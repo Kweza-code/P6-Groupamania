@@ -1,62 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Poppins&display=swap");
 /*font-family: 'Crimson Text', serif;*/
-
 
 .navigation nav {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.navigation nav h2 {
+  font-family: "Crimson Text", serif;
+  font-size: 30px;
+}
+
+.navigation ul {
+  display: flex;
   align-items: baseline;
 }
 
 .navigation nav h2 {
-  font-family: 'Crimson Text', serif;
-  font-size: 30px;
-
-}
-
-.navigation ul {
-   display: flex;
-   align-items: baseline;
-}
-
-.navigation nav h2 {
-  font-family: 'Crimson Text', serif;
+  font-family: "Crimson Text", serif;
   font-size: 30px;
 }
-
 
 nav a {
-    text-decoration: none;
-    color: #545454;
-    margin-right: 50px;
-    list-style-type: none;
+  text-decoration: none;
+  color: #545454;
+  margin-right: 50px;
+  list-style-type: none;
 }
 
 nav a:hover {
   color: black;
-
-	
 }
 
 .btnlogout {
-border: none;
-background: none;
-cursor: pointer;
-color: #545454;
-font-size: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #545454;
+  font-size: 15px;
 }
 
 .btnlogout:hover {
   color: black;
-
 }
 
-@media screen and (max-width: 767px)  {
+@media screen and (max-width: 767px) {
   .navigation nav h2 {
     display: none;
-  
   }
 
   .navigation nav {
@@ -71,19 +64,15 @@ font-size: 15px;
     align-items: baseline;
   }
 
-  
-
   nav a {
     text-decoration: none;
     color: #545454;
-    
+
     list-style-type: none;
     flex-wrap: wrap;
-}
+  }
 
-.btnlogout {
-  font-size: 10px;
+  .btnlogout {
+    font-size: 10px;
+  }
 }
-
-}
-
