@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Poppins&display=swap");
 /*font-family: 'Crimson Text', serif;*/
 
+
+
 .navigation nav {
   display: flex;
   justify-content: space-between;
@@ -16,7 +18,12 @@
 
 .navigation ul {
   display: flex;
-  align-items: baseline;
+align-items: center;
+}
+
+.navigation ul svg {
+  font-size: 40px;
+
 }
 
 .navigation nav h2 {
@@ -110,7 +117,7 @@ nav a:hover {
 
   .navigation ul {
     font-size: 20px;
-    align-items: baseline;
+    align-items: center;
     padding: 0;
   }
 

@@ -4,6 +4,8 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { isLoggedIn, setUserData } from "../utils/libs";
+import {IoCreate} from "react-icons/io5"
+import {AiFillHome} from "react-icons/ai"
 
 const Navigation = () => {
   const [post, setPosts] = useState([]);
@@ -22,12 +24,12 @@ const Navigation = () => {
         <ul>
           {isLoggedIn() && (
             <NavLink to="/">
-              <li>Home</li>
+              <AiFillHome />
             </NavLink>
           )}
           {isLoggedIn() && (
             <NavLink to="/create">
-              <li>Create</li>
+              <IoCreate />
             </NavLink>
           )}
           {isLoggedIn() === false && (
